@@ -8,11 +8,11 @@ Keep in mind this is a beta version, bugs are expected. Program tested only in M
 ## Installation 
 First, you need to install `R` (version >4.0) if you don't have it. \
 You can use on mac `brew` or in linux `apt get` to install `R`. \
-Then, install the `R libraries` with executing `sh installRpkg.sh`, that will install the packages necessary to run `vinaDB-launcher.sh`
+Then, install the `R libraries` execute the `sh installRpkg.sh` command and it will install the packages necessary to run `vinaDB-launcher.sh`
 
 ## Running 
 
-You need to exectute `vinaDB-launcher.sh` in the command line and with a good internet connection - otherwise, NCBI fetcher will be interrupted.
+You need to exectute `vinaDB-launcher.sh` in the command line and with an **stable internet connection** - otherwise, NCBI fetcher will be interrupted, and the process needs to starts again.
 
 >#You have 5 options (select a number) \
 #1: plants \
