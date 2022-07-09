@@ -1,8 +1,7 @@
 # vinaDB - Virome Network Analysis DataBase
 
 A program to retrieve the Reference Sequence datasets for plant, insect and fungal viruses. \
-Keep in mind this is a beta version, bugs are expected. \
-Scritp tested only in Mac and Linux OS.
+Keep in mind this is a beta version, bugs are expected. Program tested only in Mac and Linux OS.
 
 ------ 
 
@@ -20,9 +19,9 @@ You need to exectute `vinaDB-launcher.sh` in the command line and with a good in
 #2: land plants \
 #3: invertebrates,land plants \
 #4: invertebrates \
-#5: fungi \
+#5: fungi
 
-for example: \
+This is an example to run `vinaDB-launcher`:
 ```bash
 sh vinaDB-launcher.sh 1 # to retrieve plants
 ```
