@@ -1,28 +1,27 @@
 # vinaDB - Virome Network Analysis DataBase
 
 A program to retrieve the Reference Sequence datasets for plant, insect and fungal viruses. \
-Keep in mind this is a beta version, bugs are expected. \
-Scritp tested only in Mac and Linux OS.
+Keep in mind this is a beta version, bugs are expected. Program tested only in Mac and Linux OS.
 
 ------ 
 
 ## Installation 
 First, you need to install `R` (version >4.0) if you don't have it. \
 You can use on mac `brew` or in linux `apt get` to install `R`. \
-Then, install the `R libraries` with executing `sh installRpkg.sh`, that will install the packages necessary to run `vinaDB-launcher.sh`
+Then, install the `R libraries` execute the `sh installRpkg.sh` command and it will install the packages necessary to run `vinaDB-launcher.sh`
 
 ## Running 
 
-You need to exectute `vinaDB-launcher.sh` in the command line and with a good internet connection - otherwise, NCBI fetcher will be interrupted.
+You need to exectute `vinaDB-launcher.sh` in the command line and with an **stable internet connection** - otherwise, NCBI fetcher will be interrupted, and the process needs to starts again.
 
 >#You have 5 options (select a number) \
 #1: plants \
 #2: land plants \
 #3: invertebrates,land plants \
 #4: invertebrates \
-#5: fungi \
+#5: fungi
 
-for example: \
+This is an example to run `vinaDB-launcher`:
 ```bash
 sh vinaDB-launcher.sh 1 # to retrieve plants
 ```
