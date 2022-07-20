@@ -65,17 +65,28 @@ for (i in seq_along(AccNo)){
   Sys.sleep(1)
   gb <- entrez_fetch(db="nuccore", id=AccNo[i], rettype = 'gb')
   rec <- entrez_fetch(db="nuccore", id=AccNo[i], rettype = 'fasta')
+<<<<<<< HEAD:R/virDB.001.R
   fasn <- capture.output(cat(substr(rec, 1, nchar(rec)-2), sep = "\r\n"))
   write.fasta(sequences = as.list(fasn), names = NULL, open = "a", 
+=======
+  fasn <- capture.output(cat(substr(rec, 1, nchar(rec)-2), sep = "\n"))
+  write.fasta(sequences = fasn, names = NULL, open = "a", 
+>>>>>>> ae8044262a2d20a77cf5b4a6eb77ca4081d04562:R/virDB.000.R
               file.out = paste0(gsub(" ","",host[k]),"_", format(Sys.time(), "%m%y"),"_virDB.fna"))
   paccno <- protDB_ret(gb)
   pAccNo = unlist(paccno)
   for (j in seq_along(pAccNo)){
     print(paste0("Fetching Proteins::", " ", pAccNo[j]))
     Sys.sleep(5)
+<<<<<<< HEAD:R/virDB.001.R
     prec <- entrez_fetch(db="protein", id=pAccNo[j], rettype = 'fasta', api_key=ENTREZ_KEY)
     fasa <- capture.output(cat(substr(prec, 1, nchar(prec)-2), sep = "\r\n"))
     write.fasta(sequences = as.list(fasa), names = NULL, open = "a", 
+=======
+    prec <- entrez_fetch(db="protein", id=pAccNo[j], rettype = 'fasta')
+    fasa <- capture.output(cat(substr(prec, 1, nchar(prec)-2), sep = "\n"))
+    write.fasta(sequences = fasa, names = NULL, open = "a", 
+>>>>>>> ae8044262a2d20a77cf5b4a6eb77ca4081d04562:R/virDB.000.R
                 file.out = paste0(gsub(" ","",host[k]),"_",format(Sys.time(), "%m%y"),"_virDB.faa"))
   }
 }
