@@ -26,6 +26,21 @@ This is an example to run `virDB-launcher`:
 sh virDB-launcher.sh 1 # to retrieve option 1: plants
 ```
 
+----------
+## BLAST
+Preparing BLAST databases
+
+```bash
+makeblastdb -in Viral_nucleic_acid_database -out virusDB -dbtype nucl -hash_index
+```
+BLASTn and BLASTx
+```bash
+# blast nucleotides
+blastn -query contigs.fasta -db virDBnt -out contigs_blastn.tsv  -num_threads 4 
+# blast nucleotides x proteins
+blastx -query contigs.fasta -db virDBaa -out  contigs_blastx.tsv -num_threads 4  
+```
+
 
 >### Note:
 > The NCBI entries for plant hosts were splited as _plants_, _land plants_, and viruses that infect plants and are vectored by insects as _invertebrates,landplants_, because this has to do with NCBI indexing. You need to download _plants_, _land plants_ and _invertebrates,landplants_ to have the FULL plants database.
