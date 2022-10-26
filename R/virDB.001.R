@@ -33,6 +33,8 @@ colnames(virDB) <- c("Representative", "Neighbor", "Host", "Selected_lineage", "
 #'@details The database has 20 host (2022), and you can select any
 #' I am using host of agricultural interest, but you can expand as you wish
 host <- c("plants", "land plants", "invertebrates,land plants", "invertebrates", "fungi")
+
+table(virDB$Host)
 #' sub-setting based on your selection
 #' passing through BASH
 k <- commandArgs(TRUE)
@@ -65,33 +67,35 @@ for (i in seq_along(AccNo)){
   Sys.sleep(1)
   gb <- entrez_fetch(db="nuccore", id=AccNo[i], rettype = 'gb')
   rec <- entrez_fetch(db="nuccore", id=AccNo[i], rettype = 'fasta')
-<<<<<<< HEAD:R/virDB.001.R
   fasn <- capture.output(cat(substr(rec, 1, nchar(rec)-2), sep = "\r\n"))
   write.fasta(sequences = as.list(fasn), names = NULL, open = "a", 
-=======
-  fasn <- capture.output(cat(substr(rec, 1, nchar(rec)-2), sep = "\n"))
-  write.fasta(sequences = fasn, names = NULL, open = "a", 
->>>>>>> ae8044262a2d20a77cf5b4a6eb77ca4081d04562:R/virDB.000.R
+  # fasn <- capture.output(cat(substr(rec, 1, nchar(rec)-2), sep = "\n"))
+  # write.fasta(sequences = fasn, names = NULL, open = "a", 
               file.out = paste0(gsub(" ","",host[k]),"_", format(Sys.time(), "%m%y"),"_virDB.fna"))
   paccno <- protDB_ret(gb)
   pAccNo = unlist(paccno)
   for (j in seq_along(pAccNo)){
     print(paste0("Fetching Proteins::", " ", pAccNo[j]))
     Sys.sleep(5)
-<<<<<<< HEAD:R/virDB.001.R
-    prec <- entrez_fetch(db="protein", id=pAccNo[j], rettype = 'fasta', api_key=ENTREZ_KEY)
+    # prec <- entrez_fetch(db="protein", id=pAccNo[j], rettype = 'fasta', api_key=ENTREZ_KEY)
+    prec <- entrez_fetch(db="protein", id=pAccNo[j], rettype = 'fasta')
+    
     fasa <- capture.output(cat(substr(prec, 1, nchar(prec)-2), sep = "\r\n"))
     write.fasta(sequences = as.list(fasa), names = NULL, open = "a", 
-=======
-    prec <- entrez_fetch(db="protein", id=pAccNo[j], rettype = 'fasta')
-    fasa <- capture.output(cat(substr(prec, 1, nchar(prec)-2), sep = "\n"))
-    write.fasta(sequences = fasa, names = NULL, open = "a", 
->>>>>>> ae8044262a2d20a77cf5b4a6eb77ca4081d04562:R/virDB.000.R
+    # fasa <- capture.output(cat(substr(prec, 1, nchar(prec)-2), sep = "\n"))
+    # write.fasta(sequences = fasa, names = NULL, open = "a", 
                 file.out = paste0(gsub(" ","",host[k]),"_",format(Sys.time(), "%m%y"),"_virDB.faa"))
   }
 }
-print("GeneBank Metadata Recorded")
+filename <- paste0(gsub(" ","",host[k]),"_",format(Sys.time(), "%m%y"), "_virDB.fa")
+cat(filename)
+cat("GeneBank Metadata Recorded")
 
+Sys.info()[1] == "Darwin"
+system("sed -i '' -e '/^>$/d' *_virDB.fna")
+system("sed -i '' -e '/^>$/d' *_virDB.faa")
+
+Sys.info()[1] == "Linux"
 system("sed -i '/^>$/d' *_virDB.fna")
 system("sed -i '/^>$/d' *_virDB.faa")
 
