@@ -22,16 +22,16 @@ module load ufrc
 # execute with: 
 # sbatch protDB.sbatch file_of_files (fof)
 DIR=$1
-#ls -l "$DIR"/*.txt | awk '{print $9}' | cut -d '_' -f1 | sed '/^$/d' > ./ID.vina
+ls $DIR > dir.fof
+#ls 2-results_papa2021 | cut -d_ -f2 | cut -d. -f1 > ID.txt
 #echo "$DIR"
 echo "ViNAq begins the processes :::"
 #       if ID.vina permission denied ... is 0k"
-ID=$(ls "$DIR"/*.sam | cut -d '.' -f1 | sed -n ${SLURM_ARRAY_TASK_ID}p)
+ID=$(sed -n ${SLURM_ARRAY_TASK_ID}p)
 
-grep "^>" blastx.reference.fa > $ID-blastx.reference.txt
-sed -i 's/^>//g' $ID-blastx.reference.txt
-
+grep '^>' $DIR/$ID/blastx.reference.fa > $ID-blastx.reference.txt
+#grep "^>" blastx.reference.fa > $ID-blastx.reference.txt
+sed -i 's/^>//g' $DIR/$ID-blastx.reference.txt
 
 echo "retrieving proteins" 
-mkdir -p "$ID"_meta-index/
-Rscript --vanilla R/protDB_ret.R "$ID"_uclust.csv
+Rscript --vanilla R/protDB_ret.R $ID-blastx.reference.txt
