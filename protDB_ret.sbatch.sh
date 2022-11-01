@@ -1,22 +1,22 @@
 #!/bin/bash
 #SBATCH --account=epi
-#SBATCH --qos=epi-b
-#SBATCH --job-name=ViNAq
+#SBATCH --qos=epi
+#SBATCH --job-name=protret
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=ralcala@ufl.edu
-#SBATCH --ntasks=4
-#SBATCH --cpus-per-task=4
-#SBATCH --mem=32gb
-#SBATCH --time=80:00:00
-#SBATCH --output=ViNAq_%j.out
-#SBATCH --array=1-981%100
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=1
+#SBATCH --mem=500mb
+#SBATCH --time=1:00:00
+#SBATCH --output=protret_%j.out
+#SBATCH --array=1-2%1
 date; hostname; pwd
 # Mapping
 #@ Execute this program using this command
 # sbatch ViNAq-ht.sbatch res_ViNAt
 ##two methods
 module purge
-module load ufrc
+module load ufrc R
 
 #@ probably i will need to do add PATH1=$1
 # execute with: 
@@ -27,11 +27,11 @@ ls $DIR > dir.fof
 #echo "$DIR"
 echo "ViNAq begins the processes :::"
 #       if ID.vina permission denied ... is 0k"
-ID=$(sed -n ${SLURM_ARRAY_TASK_ID}p)
+ID=$(sed -n ${SLURM_ARRAY_TASK_ID}p dir.fof)
 
-grep '^>' $DIR/$ID/blastx.reference.fa > $ID-blastx.reference.txt
+grep '^>' $DIR$ID/blastx.reference.fa > $ID-blastx.reference.txt
 #grep "^>" blastx.reference.fa > $ID-blastx.reference.txt
 sed -i 's/^>//g' $DIR/$ID-blastx.reference.txt
 
 echo "retrieving proteins" 
-Rscript --vanilla R/protDB_ret.R $ID-blastx.reference.txt
+Rscript --vanilla virDB/R/protDB_ret.R $ID-blastx.reference.txt

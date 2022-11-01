@@ -23,7 +23,8 @@ protDB_ret <- function(genebankrecord){
 
 #' passing through BASH
 x <- commandArgs(TRUE)
-x = "test_blastx.reference.txt"
+print(x)
+#x = "test_blastx.reference.txt"
 file <- strsplit(x, "\\." )[[1]][1]
 xAccNo<- read.csv(x, header = F)
 
