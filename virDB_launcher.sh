@@ -11,7 +11,7 @@ echo file running:: database
 # selecting option
 option=$1
 echo "retrieving"  ${option} "databases"
-Rscript --vanilla 2>&1 R/virDB.000.R ${option} 
+Rscript --vanilla 2>&1 R/virDB.001.R ${option} 
  
 
 date
