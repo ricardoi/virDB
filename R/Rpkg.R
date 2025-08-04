@@ -11,7 +11,7 @@ pkg_list <- tmp$Package
 
 res <- sum(grepl(my_lib, pkg_list))
 
-av_pk <- available.packages(contriburl = contrib.url("https://cran.revolutionanalytics.com/"))
+av_pk <- available.packages(contriburl = contrib.url("https://cloud.r-project.org"))
 
 pkgInfoRepo <- function(pkg.name, av_pk) {
   if (pkg.name %in% av_pk[,1]){
@@ -26,7 +26,7 @@ if (!is.na(my_lib)) {
   # install packages from Rpkgs_list.txt
   if (res == 0) {
     install.packages(my_lib,
-                   repos = "https://cran.revolutionanalytics.com/")
+                   repos = "https://cloud.r-project.org")
   } else {
     print(paste(my_lib, "is already installed!"))
   }
@@ -42,8 +42,9 @@ if (!is.na(my_lib)) {
         print(paste(pkg, "is up to date"))
       } else {
         install.packages(pkg,
-                     repos = "https://cran.revolutionanalytics.com/")
+                     repos = "https://cloud.r-project.org")
       }
     } else {print("not in CRAN")}
+
   }
 }
